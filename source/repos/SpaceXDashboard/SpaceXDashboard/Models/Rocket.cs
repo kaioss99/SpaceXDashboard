@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace SpaceXDashboard.Models
 {
-    internal class Rocket
+    public class Rocket
     {
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
+        public bool Active { get; set; }
+        public int SuccessRatePct { get; set; }
     }
 }

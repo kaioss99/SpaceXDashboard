@@ -6,7 +6,11 @@ using System.Threading.Tasks;
 
 namespace SpaceXDashboard.Models
 {
-    internal class Stats
+    public class Stats
     {
+        public int TotalLaunches { get; set; }
+        public int SuccessfulLaunches { get; set; }
+        public int FailedLaunches { get; set; }
+        public double SuccessRate { get; set; }
     }
 }
