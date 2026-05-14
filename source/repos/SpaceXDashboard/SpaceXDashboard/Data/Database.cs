@@ -1,12 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Microsoft.Data.Sqlite;
 
 namespace SpaceXDashboard.Data
 {
-    internal class Database
+    public class DatabaseContext
     {
+        private const string DB_PATH = "spacex.db";
+
+        public SqliteConnection GetConnection() =>
+            new SqliteConnection($"Data Source={DB_PATH}");
+
+        public void Initialize()
+        {
+            using var connection = GetConnection();
+            connection.Open();
+
+            var command = connection.CreateCommand();
+            command.CommandText = @"
+                CREATE TABLE IF NOT EXISTS Launches (
+                    Id TEXT PRIMARY KEY,
+                    Name TEXT,
+                    DateUtc TEXT,
+                    Success INTEGER,
+                    RocketName TEXT,
+                    Details TEXT
+                );
+                CREATE TABLE IF NOT EXISTS Rockets (
+                    Id TEXT PRIMARY KEY,
+                    Name TEXT,
+                    Description TEXT,
+                    Active INTEGER,
+                    SuccessRatePct INTEGER
+                );
+                CREATE TABLE IF NOT EXISTS Stats (
+                    Id INTEGER PRIMARY KEY,
+                    TotalLaunches INTEGER,
+                    SuccessfulLaunches INTEGER,
+                    FailedLaunches INTEGER,
+                    SuccessRate REAL
+                );";
+
+            command.ExecuteNonQuery();
+        }
     }
 }
