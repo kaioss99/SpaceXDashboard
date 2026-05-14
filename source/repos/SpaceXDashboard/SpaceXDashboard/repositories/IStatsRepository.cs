@@ -1,12 +1,15 @@
-﻿using System;
+﻿using SpaceXDashboard.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpaceXDashboard.repositories
+namespace SpaceXDashboard.Repositories
 {
-    internal class IStatsRepository
+    public interface IStatsRepository
     {
+        Task<Stats> GetAsync();
+        Task SaveAsync(Stats stats);
     }
 }

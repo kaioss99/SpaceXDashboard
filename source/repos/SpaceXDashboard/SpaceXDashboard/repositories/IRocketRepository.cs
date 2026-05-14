@@ -4,9 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SpaceXDashboard.repositories
+namespace SpaceXDashboard.Repositories
 {
-    internal class IRocketRepository
+    public interface IRocketRepository
     {
+        Task<List<Rocket>> GetAllAsync();
+        Task SaveAllAsync(List<Rocket> rockets);
     }
 }
