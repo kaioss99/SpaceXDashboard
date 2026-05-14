@@ -1,0 +1,27 @@
+﻿<Window x:Class="AppUsandoGit.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:AppUsandoGit"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+
+        <StackPanel Margin="10">
+        
+            <Label Content="Nota 1:"/>
+            <TextBox Name="cxNota1"/>
+
+            <Label Content="Nota 2:"/>
+            <TextBox Name="cxNota2"/>
+
+            <Label Content="Nota 3:"/>
+            <TextBox Name="cxNota3"/>
+
+            <Button Content="Calcular" Click="Button_Click" Margin="0,15,0,0" Height="30"/>
+
+        </StackPanel>
+        
+    </Grid>
+</Window>
