@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.Data.Sqlite;
+using SpaceXDashboard.Data;
+using SpaceXDashboard.Models;
+using SpaceXDashboard.Services;
 
 namespace SpaceXDashboard.Repositories
 {

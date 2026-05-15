@@ -1,6 +1,5 @@
 ﻿using SpaceXDashboard.Commands;
 using SpaceXDashboard.Models;
-using SpaceXDashboard.repositories;
 using SpaceXDashboard.Repositories;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
