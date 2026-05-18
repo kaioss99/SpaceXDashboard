@@ -32,3 +32,13 @@ SpaceXDashboard/
 - 💾 **Cache local** — dados salvos em SQLite para uso offline
 
 ## 🔄 Fluxo de Dados
+
+API REST (Aluno 2)
+↓
+ApiService
+↓
+Repository → salva no SQLite
+↓
+MainViewModel
+↓
+MainWindow (WPF)
