@@ -1,6 +1,8 @@
-﻿using System.Windows;
+﻿using PdfSharp.Fonts;
+using SpaceXDashboard.Commands;
 using SpaceXDashboard.Data;
-using SpaceXDashboard.Views;
+
+using System.Windows;
 
 namespace SpaceXDashboard
 {
@@ -10,13 +12,10 @@ namespace SpaceXDashboard
         {
             base.OnStartup(e);
 
-            // Inicializa o banco de dados
+            GlobalFontSettings.FontResolver = new FileFontResolver();
+
             var db = new DatabaseContext();
             db.Initialize();
-
-            // Abre a janela principal
-            var mainWindow = new MainWindow();
-            mainWindow.Show();
         }
     }
 }

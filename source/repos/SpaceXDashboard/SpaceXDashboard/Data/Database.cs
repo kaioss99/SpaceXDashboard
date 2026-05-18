@@ -17,26 +17,24 @@ namespace SpaceXDashboard.Data
             var command = connection.CreateCommand();
             command.CommandText = @"
                 CREATE TABLE IF NOT EXISTS Launches (
-                    Id TEXT PRIMARY KEY,
-                    Name TEXT,
-                    DateUtc TEXT,
+                    Id      TEXT PRIMARY KEY,
+                    Name    TEXT,
                     Success INTEGER,
-                    RocketName TEXT,
                     Details TEXT
                 );
                 CREATE TABLE IF NOT EXISTS Rockets (
-                    Id TEXT PRIMARY KEY,
-                    Name TEXT,
-                    Description TEXT,
-                    Active INTEGER,
+                    Id             TEXT PRIMARY KEY,
+                    Name           TEXT,
+                    Description    TEXT,
+                    Active         INTEGER,
                     SuccessRatePct INTEGER
                 );
                 CREATE TABLE IF NOT EXISTS Stats (
-                    Id INTEGER PRIMARY KEY,
-                    TotalLaunches INTEGER,
+                    Id                 INTEGER PRIMARY KEY,
+                    TotalLaunches      INTEGER,
                     SuccessfulLaunches INTEGER,
-                    FailedLaunches INTEGER,
-                    SuccessRate REAL
+                    FailedLaunches     INTEGER,
+                    SuccessRate        REAL
                 );";
 
             command.ExecuteNonQuery();

@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Microsoft.Data.Sqlite;
+﻿using Microsoft.Data.Sqlite;
 using SpaceXDashboard.Data;
 using SpaceXDashboard.Models;
 using SpaceXDashboard.Services;
@@ -38,12 +33,10 @@ namespace SpaceXDashboard.Repositories
                 var cmd = connection.CreateCommand();
                 cmd.CommandText = @"
                     INSERT OR REPLACE INTO Launches
-                    VALUES ($id, $name, $date, $success, $rocket, $details)";
+                    VALUES ($id, $name, $success, $details)";
                 cmd.Parameters.AddWithValue("$id", l.Id ?? "");
                 cmd.Parameters.AddWithValue("$name", l.Name ?? "");
-                cmd.Parameters.AddWithValue("$date", l.DateUtc?.ToString() ?? "");
                 cmd.Parameters.AddWithValue("$success", l.Success == true ? 1 : 0);
-                cmd.Parameters.AddWithValue("$rocket", l.RocketName ?? "");
                 cmd.Parameters.AddWithValue("$details", l.Details ?? "");
                 cmd.ExecuteNonQuery();
             }
@@ -67,10 +60,8 @@ namespace SpaceXDashboard.Repositories
                 {
                     Id = reader.GetString(0),
                     Name = reader.GetString(1),
-                    DateUtc = DateTime.TryParse(reader.GetString(2), out var d) ? d : null,
-                    Success = reader.GetInt32(3) == 1,
-                    RocketName = reader.GetString(4),
-                    Details = reader.GetString(5)
+                    Success = reader.GetInt32(2) == 1,
+                    Details = reader.GetString(3)
                 });
             }
 

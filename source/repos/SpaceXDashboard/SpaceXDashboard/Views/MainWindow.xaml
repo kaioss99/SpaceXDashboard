@@ -15,6 +15,8 @@
         <!-- TOOLBAR -->
         <Border Grid.Row="0" Background="White" BorderBrush="#DDDDDD" BorderThickness="0,0,0,1">
             <DockPanel Margin="12,0">
+
+                <!-- BOTÃO ATUALIZAR -->
                 <Button Content="Atualizar"
                         Command="{Binding RefreshCommand}"
                         DockPanel.Dock="Right"
@@ -25,16 +27,26 @@
                         VerticalAlignment="Center"
                         Cursor="Hand"/>
 
+                <!-- BOTÃO GERAR PDF -->
+                <Button Content="Gerar PDF"
+                        Command="{Binding GeneratePdfCommand}"
+                        DockPanel.Dock="Right"
+                        Background="#444444" Foreground="White"
+                        BorderThickness="0"
+                        Padding="14,6"
+                        FontSize="12"
+                        Margin="0,0,8,0"
+                        VerticalAlignment="Center"
+                        Cursor="Hand"/>
+
                 <TabControl x:Name="MainTabs"
                             Background="Transparent"
                             BorderThickness="0"
                             VerticalAlignment="Center">
-
                     <TabItem Header="Estatísticas" FontSize="12"/>
-                    <TabItem Header="Lançamentos" FontSize="12"/>
-                    <TabItem Header="Foguetes"    FontSize="12"/>
-                    <TabItem Header="Gráficos"    FontSize="12"/>
-
+                    <TabItem Header="Lançamentos"  FontSize="12"/>
+                    <TabItem Header="Foguetes"     FontSize="12"/>
+                    <TabItem Header="Gráficos"     FontSize="12"/>
                 </TabControl>
             </DockPanel>
         </Border>
@@ -45,12 +57,12 @@
                 <ContentControl.Style>
                     <Style TargetType="ContentControl">
                         <Style.Triggers>
+
+                            <!-- ABA 0: ESTATÍSTICAS -->
                             <DataTrigger Binding="{Binding SelectedIndex, ElementName=MainTabs}" Value="0">
                                 <Setter Property="Content">
                                     <Setter.Value>
                                         <StackPanel>
-
-                                            <!-- CARDS -->
                                             <UniformGrid Columns="3" Margin="0,0,0,12">
                                                 <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="6" Margin="0,0,10,0" Padding="16">
                                                     <StackPanel>
@@ -72,7 +84,6 @@
                                                 </Border>
                                             </UniformGrid>
 
-                                            <!-- BARRA POR FOGUETE -->
                                             <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="6" Padding="16">
                                                 <StackPanel>
                                                     <TextBlock Text="RESUMO POR FOGUETE" FontSize="11" Foreground="#666" FontWeight="Medium" Margin="0,0,0,12"/>
@@ -97,12 +108,12 @@
                                                     </ItemsControl>
                                                 </StackPanel>
                                             </Border>
-
                                         </StackPanel>
                                     </Setter.Value>
                                 </Setter>
                             </DataTrigger>
 
+                            <!-- ABA 1: LANÇAMENTOS -->
                             <DataTrigger Binding="{Binding SelectedIndex, ElementName=MainTabs}" Value="1">
                                 <Setter Property="Content">
                                     <Setter.Value>
@@ -119,11 +130,9 @@
                                                       ColumnHeaderHeight="32"
                                                       RowHeight="32">
                                                 <DataGrid.Columns>
-                                                    <DataGridTextColumn Header="Nome"    Binding="{Binding Name}"    Width="*"/>
-                                                    <DataGridTextColumn Header="Data"    Binding="{Binding DateUtc, StringFormat=dd/MM/yyyy}" Width="110"/>
-                                                    <DataGridTextColumn Header="Foguete" Binding="{Binding RocketName}" Width="130"/>
-                                                    <DataGridTextColumn Header="Status"  Binding="{Binding Success}" Width="90"/>
-                                                    <DataGridTextColumn Header="Detalhes" Binding="{Binding Details}" Width="2*"/>
+                                                    <DataGridTextColumn Header="Nome"     Binding="{Binding Name}"    Width="*"/>
+                                                    <DataGridTextColumn Header="Status"   Binding="{Binding Success}" Width="90"/>
+                                                    <DataGridTextColumn Header="Detalhes" Binding="{Binding Details}" Width="3*"/>
                                                 </DataGrid.Columns>
                                             </DataGrid>
                                         </Border>
@@ -131,6 +140,7 @@
                                 </Setter>
                             </DataTrigger>
 
+                            <!-- ABA 2: FOGUETES -->
                             <DataTrigger Binding="{Binding SelectedIndex, ElementName=MainTabs}" Value="2">
                                 <Setter Property="Content">
                                     <Setter.Value>
@@ -147,10 +157,10 @@
                                                       ColumnHeaderHeight="32"
                                                       RowHeight="32">
                                                 <DataGrid.Columns>
-                                                    <DataGridTextColumn Header="Nome"         Binding="{Binding Name}"          Width="*"/>
-                                                    <DataGridTextColumn Header="Ativo"        Binding="{Binding Active}"        Width="80"/>
+                                                    <DataGridTextColumn Header="Nome"         Binding="{Binding Name}"        Width="*"/>
+                                                    <DataGridTextColumn Header="Ativo"        Binding="{Binding Active}"      Width="80"/>
                                                     <DataGridTextColumn Header="Taxa sucesso" Binding="{Binding SuccessRatePct, StringFormat={}{0}%}" Width="110"/>
-                                                    <DataGridTextColumn Header="Descrição"    Binding="{Binding Description}"   Width="3*"/>
+                                                    <DataGridTextColumn Header="Descrição"    Binding="{Binding Description}" Width="3*"/>
                                                 </DataGrid.Columns>
                                             </DataGrid>
                                         </Border>
@@ -158,28 +168,35 @@
                                 </Setter>
                             </DataTrigger>
 
+                            <!-- ABA 3: GRÁFICOS -->
                             <DataTrigger Binding="{Binding SelectedIndex, ElementName=MainTabs}" Value="3">
                                 <Setter Property="Content">
                                     <Setter.Value>
                                         <Border Background="White" BorderBrush="#E0E0E0" BorderThickness="1" CornerRadius="6" Padding="16">
                                             <StackPanel>
-                                                <TextBlock Text="LANÇAMENTOS POR ANO" FontSize="11" Foreground="#666" FontWeight="Medium" Margin="0,0,0,12"/>
-                                                <ItemsControl ItemsSource="{Binding Launches}">
-                                                    <ItemsControl.ItemTemplate>
-                                                        <DataTemplate>
-                                                            <Grid Margin="0,0,0,8">
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="50"/>
-                                                                    <ColumnDefinition Width="*"/>
-                                                                </Grid.ColumnDefinitions>
-                                                                <TextBlock Text="{Binding DateUtc, StringFormat=yyyy}" FontSize="11" Foreground="#555"/>
-                                                                <Border Grid.Column="1" Background="#EEEEEE" CornerRadius="2" Height="12">
-                                                                    <Border Background="#1a73e8" CornerRadius="2" HorizontalAlignment="Left" Width="100"/>
-                                                                </Border>
-                                                            </Grid>
-                                                        </DataTemplate>
-                                                    </ItemsControl.ItemTemplate>
-                                                </ItemsControl>
+                                                <TextBlock Text="LANÇAMENTOS — SUCESSO VS FALHA" FontSize="11" Foreground="#666" FontWeight="Medium" Margin="0,0,0,12"/>
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="*"/>
+                                                        <ColumnDefinition Width="*"/>
+                                                    </Grid.ColumnDefinitions>
+                                                    <StackPanel Grid.Column="0" Margin="0,0,16,0">
+                                                        <TextBlock Text="Sucesso" FontSize="11" Foreground="#1e7e34" Margin="0,0,0,4"/>
+                                                        <Border Background="#EEEEEE" CornerRadius="2" Height="20">
+                                                            <Border Background="#1e7e34" CornerRadius="2" HorizontalAlignment="Left"
+                                                                    Width="{Binding Stats.SuccessfulLaunches}"/>
+                                                        </Border>
+                                                        <TextBlock Text="{Binding Stats.SuccessfulLaunches}" FontSize="11" Foreground="#555" Margin="0,4,0,0"/>
+                                                    </StackPanel>
+                                                    <StackPanel Grid.Column="1">
+                                                        <TextBlock Text="Falha" FontSize="11" Foreground="#c5221f" Margin="0,0,0,4"/>
+                                                        <Border Background="#EEEEEE" CornerRadius="2" Height="20">
+                                                            <Border Background="#c5221f" CornerRadius="2" HorizontalAlignment="Left"
+                                                                    Width="{Binding Stats.FailedLaunches}"/>
+                                                        </Border>
+                                                        <TextBlock Text="{Binding Stats.FailedLaunches}" FontSize="11" Foreground="#555" Margin="0,4,0,0"/>
+                                                    </StackPanel>
+                                                </Grid>
                                             </StackPanel>
                                         </Border>
                                     </Setter.Value>

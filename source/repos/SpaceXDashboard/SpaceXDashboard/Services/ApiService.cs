@@ -7,13 +7,13 @@ namespace SpaceXDashboard.Services
     public class ApiService
     {
         private readonly HttpClient _client = new HttpClient();
-        private const string BASE_URL = "https://url-da-api-do-aluno2.com";
+        private const string BASE_URL = "http://apispacex.runasp.net";
 
         public async Task<List<Launch>> GetLaunchesAsync()
         {
             try
             {
-                var response = await _client.GetStringAsync($"{BASE_URL}/api/launches");
+                var response = await _client.GetStringAsync($"{BASE_URL}/api/SpaceX/launches");
                 return JsonConvert.DeserializeObject<List<Launch>>(response);
             }
             catch { return null; }
@@ -23,7 +23,7 @@ namespace SpaceXDashboard.Services
         {
             try
             {
-                var response = await _client.GetStringAsync($"{BASE_URL}/api/rockets");
+                var response = await _client.GetStringAsync($"{BASE_URL}/api/SpaceX/rockets");
                 return JsonConvert.DeserializeObject<List<Rocket>>(response);
             }
             catch { return null; }
@@ -33,7 +33,7 @@ namespace SpaceXDashboard.Services
         {
             try
             {
-                var response = await _client.GetStringAsync($"{BASE_URL}/api/stats");
+                var response = await _client.GetStringAsync($"{BASE_URL}/api/SpaceX/stats");
                 return JsonConvert.DeserializeObject<Stats>(response);
             }
             catch { return null; }
