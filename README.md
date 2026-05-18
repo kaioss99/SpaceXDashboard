@@ -182,15 +182,4 @@ O arquivo é salvo automaticamente na **Área de Trabalho** como `SpaceX_Report.
 
 ---
 
-## 📁 Estrutura de Commits
 
-| Prefixo | Descrição |
-|---|---|
-| `feat:` | Nova funcionalidade |
-| `fix:` | Correção de bug |
-| `chore:` | Configuração e manutenção |
-| `docs:` | Documentação |
-
----
-
-*Projeto acadêmico — 2026*
