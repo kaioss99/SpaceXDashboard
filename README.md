@@ -176,8 +176,8 @@ O arquivo é salvo automaticamente na **Área de Trabalho** como `SpaceX_Report.
 
 | Aluno | Repositório | Responsabilidade |
 |---|---|---|
-| Pedro Moura | - | WPF consumidor da API pública SpaceX |
-| Miguel Cassio | [apispacex.runasp.net](http://apispacex.runasp.net) | API REST em C# hospedada na nuvem |
+| Miguel Cassio | - | WPF consumidor da API pública SpaceX |
+| Pedro Moura | [apispacex.runasp.net](http://apispacex.runasp.net) | API REST em C# hospedada na nuvem |
 | Kaio Silva | [SpaceXDashboard](https://github.com/kaioss99/SpaceXDashboard) | WPF painel de análise (este repositório) |
 
 ---
